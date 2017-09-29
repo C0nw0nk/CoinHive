@@ -10,6 +10,9 @@ Any contibutions feel free to make a pull request : https://github.com/C0nw0nk/C
 
 I do look forward to people sharing improvements.
 
+# Live in action Demo :
+https://c0nw0nk.github.io/CoinHive/
+
 # Reasons for this script :
 It is silent can use little to no cpu power and provides a clean ad free internet experience while allowing the sites you love to stay online.
 
