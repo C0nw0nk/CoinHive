@@ -1,5 +1,5 @@
 # CoinHive
-A nice friendly simple and easly customizable GUI for coinhives javascript miner to embed onto websites so users of your site can interact with features of the miner on every single page this javascript miner is to help those who have problems with advertising/ads/popups etc and provide a all around better cleaer web experience for everyone.
+A nice friendly simple and easly customizable GUI for coinhives javascript miner to embed onto websites so users of your site can interact with features of the miner on every single page this javascript miner is to help those who have problems with advertising/ads/popups etc and provide a all around better cleaner web experience for everyone.
 
 This script is to show as a example how easy it is to embed a nice floating mining widget into your site for your users to interact with.
 It is very easy to modify / read you can easly change the designs colors and styles yourself, I do hope you Enjoy it.
@@ -14,7 +14,8 @@ I do look forward to people sharing improvements.
 It is silent can use little to no cpu power and provides a clean ad free internet experience while allowing the sites you love to stay online.
 
 Ads can be intrusive and annoying, Look at popups for example, flashing images, auto playing sounds etc.
-Advertisers don't pay for VPN/Proxy connected or related traffic because they consider it BOT traffic without considering the fact it is only increasing as goverments and who ever you pay every month to supply you with internet access create blockades and blacklists forcing people to use such services to access sites. If someone connects and browses with a known flagged VPN/Proxy to them even if that user is displaying ads and can see them you earn nothing.
+
+Advertisers don't pay for VPN/Proxy connected or related traffic because they consider it BOT traffic without considering the fact it is only increasing as goverments and who ever you pay every month to supply you with internet access create blockades and blacklists forcing people to use such services to access sites. If someone connects and browses with a known flagged VPN/Proxy to them even if that user is displaying ads and can see them you earn nothing from advertising.
 
 Advertisers can scam and won't pay a penny for the most outrageous of reasons.
 
