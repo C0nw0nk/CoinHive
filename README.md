@@ -13,6 +13,13 @@ I do look forward to people sharing improvements.
 # Live in action Demo :
 https://c0nw0nk.github.io/CoinHive/
 
+# Reasons both Users of sites and Publishers prefer this over being reliant on advertising for revenue / income :
+Advertisements are invasive and annoying this is not.
+
+Majority of users given the choice between seeing allot of banners/popups in order to access sites and content or have some of their CPU cycles borrowed will choose to mine instead of seeing ads on any website.
+
+Advertisements waste bandwidth, resources and are always locked in view on screen (otherwise it defeats the purpose of ads being displayed if you can't see them), Mining how ever can run silently in the backround is not annoying or invasive and does not take over your browser opening tabs / windows when you click anywhere.
+
 # Reasons for this script :
 It is silent can use little to no cpu power and provides a clean ad free internet experience while allowing the sites you love to stay online.
 
