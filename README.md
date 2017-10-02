@@ -43,3 +43,5 @@ Anti-Viruses and external programs block mining but not popups or other ads that
 We all have seen sites with Javascript based games that are also cpu intensive but we don't see them getting blocked by Anti-viruses, Adblockers, Internet service providers etc.
 
 Ads, popups get allowed by them all but mining gets blocked.
+
+Companies appear to be giving special treatment and abusing services to suit their own gains and needs. If not then why do Parental filters, Anti-Virus companies and Internet service providers with online protection shields ( http://www.sky.com/shop/broadband-talk/broadband-shield/ being a prime example) openly block access to this but never have and never will block worse forms of advertising such as popads and mobile redirects those are the domains that deserved to be blocked if they want to start acting like adblockers.
