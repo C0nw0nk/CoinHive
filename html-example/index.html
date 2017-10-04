@@ -9,6 +9,18 @@
 <meta name="revisit-after" content="1 days" />
 <meta name="keywords" content="coinhive, coin, hive, bitcoin, monero, miner, javascript, embed, widget, website, money" />
 <meta name="description" content="coinhive bitcoin / monero miner simple javascript graphical user interface to be embeded onto any website as a widget highly customizable fast easy clean and tidy help those who deal with adblockers anti viruses popups banners ads no longer need to rely on advertisers / advertisement companies for money." />
+
+<link rel="image_src" href="https://coinhive.com/media/coinhive-icon.png" />
+<meta property="og:title" content="CoinHive - Demo - Monero miner friendly simple GUI by C0nw0nk" />
+<meta property="og:url" content="https://c0nw0nk.github.io/CoinHive/" />
+<meta property="og:image" content="https://coinhive.com/media/coinhive-icon.png" />
+<meta property="og:image:height" content="512" />
+<meta property="og:image:width" content="512" />
+<meta property="og:site_name" content="CoinHive" />
+<meta property="fb:app_id" content="" />
+<meta property="og:description" content="coinhive bitcoin / monero miner simple javascript graphical user interface to be embeded onto any website as a widget highly customizable fast easy clean and tidy help those who deal with adblockers anti viruses popups banners ads no longer need to rely on advertisers / advertisement companies for money." />
+<meta property="og:type" content="website" />
+
 </head>
 <body>
 <style>
@@ -25,6 +37,7 @@ Any issues feel free to post a issue request : <a href="https://github.com/C0nw0
 <br>
 Any contibutions feel free to make a pull request : <a href="https://github.com/C0nw0nk/CoinHive/pulls">Pull Request</a>
 <br>
+<a href="https://github.com/C0nw0nk/CoinHive">Main GitHub Repo for updates and bug fixes</a>
 <br>
 <br>
 <br>
@@ -465,7 +478,7 @@ createScriptElement.onload = function () {
 		return miner.setAutoThreadsEnabled(enabled);
 	}
 	function getThrottle() {
-		return miner.getThrottle().toFixed(1);
+		return Math.round( miner.getThrottle().toFixed(1) * 1e2 ) / 1e2;
 	}
 	function setThrottle(throttle) {
 		return miner.setThrottle(throttle);
